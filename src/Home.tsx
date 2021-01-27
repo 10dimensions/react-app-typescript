@@ -18,7 +18,7 @@ import {
   View
 } from "framework7-react";
 
-export default () => {
+export default ({ f7router, f7route }) => {
   return (
     <Page>
       <Navbar>
@@ -33,20 +33,26 @@ export default () => {
       <Toolbar bottom>
         <Link>Favourites</Link>
         <Link>Recent</Link>
-        <Link>Contacts</Link>
+        <Link href="/item">Contacts</Link>
         <Link>Dial</Link>
       </Toolbar>
 
       <List>
-        <ListItem link="/about/" title="About" />
+        <ListItem
+          link="/item/4/"
+          title="Item"
+          // onClick={() => {
+          //   f7router.navigate("/item/4");
+          // }}
+        />
       </List>
 
-      <List>
+      {/* <List>
         <ListItem
           link="/load-something-that-doesnt-exist/"
           title="Default Route (404)"
         />
-      </List>
+      </List> */}
     </Page>
   );
 };

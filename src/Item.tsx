@@ -1,31 +1,26 @@
 import React from "react";
 import { Page, Navbar, BlockTitle, Block, Link } from "framework7-react";
 
-const ContactItem = () => {
+interface Details {
+  name: string;
+  phone: number;
+  email: string;
+  pic: string;
+}
+
+const ContactItem = (props) => {
+  console.log(props);
   return (
     <Page>
-      <Navbar title="About" backLink="Back" />
-      <BlockTitle>About My App</BlockTitle>
+      <Navbar title="" backLink="Back" />
+      <BlockTitle>{props.id}</BlockTitle>
       <Block strong>
         <p>Here is About page!</p>
         <p>
           You can go <Link back>back</Link>.
         </p>
-        <p>
-          Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor nec
-          commodo rutrum, varius at sem. Nullam ac nisi non neque ornare
-          pretium. Nulla mauris mauris, consequat et elementum sit amet, egestas
-          sed orci. In hac habitasse platea dictumst.
-        </p>
-        <p>
-          Fusce eros lectus, accumsan eget mi vel, iaculis tincidunt felis.
-          Nulla tincidunt pharetra sagittis. Fusce in felis eros. Nulla sit amet
-          aliquam lorem, et gravida ipsum. Mauris consectetur nisl non
-          sollicitudin tristique. Praesent vitae metus ac quam rhoncus mattis
-          vel et nisi. Aenean aliquet, felis quis dignissim iaculis, lectus quam
-          tincidunt ligula, et venenatis turpis risus sed lorem. Morbi eu metus
-          elit. Ut vel diam dolor.
-        </p>
+        <p>Mauris</p>
+        <p>Fusce</p>
       </Block>
     </Page>
   );
