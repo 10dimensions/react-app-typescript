@@ -1,4 +1,5 @@
 import React from "react";
+import store from "./store/store.js";
 import {
   Page,
   Navbar,
@@ -19,6 +20,8 @@ import {
 } from "framework7-react";
 
 export default ({ f7router, f7route }) => {
+  const users = store.getters.users;
+
   return (
     <Page>
       <Navbar>
@@ -38,13 +41,7 @@ export default ({ f7router, f7route }) => {
       </Toolbar>
 
       <List>
-        <ListItem
-          link="/item/4/"
-          title="Item"
-          // onClick={() => {
-          //   f7router.navigate("/item/4");
-          // }}
-        />
+        <ListItem link="/item/4/" title={users.value[0].name} />
       </List>
 
       {/* <List>
