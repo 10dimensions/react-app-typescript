@@ -1,17 +1,27 @@
 import React from "react";
+import store from "./store/store";
 import { Page, Navbar, BlockTitle, Block, Link } from "framework7-react";
 
 interface ID {
-  id: number;
+  id: string;
+}
+
+interface Num {
+  num: number;
 }
 
 const ContactItem = (props) => {
   const id: ID = props.id;
+  const num: Num = props.num;
+
+  store.dispatch("setCurrent", { obj: { id: id, num: num } });
+  const user = store.getters.user;
+  const { name, number, email, fav } = user.value;
 
   return (
     <Page>
       <Navbar title="" backLink="Back" />
-      <BlockTitle>{id}</BlockTitle>
+      <BlockTitle>{name}</BlockTitle>
       <Block strong>
         <p>Here is About page!</p>
         <p>

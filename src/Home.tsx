@@ -1,5 +1,5 @@
 import React from "react";
-import store from "./store/store.js";
+import store from "./store/store";
 import {
   Page,
   Navbar,
@@ -12,6 +12,7 @@ import {
   BlockTitle,
   List,
   ListItem,
+  ListGroup,
   Row,
   Col,
   Button,
@@ -19,8 +20,39 @@ import {
   View
 } from "framework7-react";
 
+const ContactList = (props) => {
+  const data = props.data;
+  const dataOrder = Object.keys(data);
+
+  return (
+    <List contactsList>
+      {dataOrder.map((element, index) => {
+        if (data[dataOrder[index]].length > 0) {
+          return (
+            <ListGroup key={"group" + index}>
+              <ListItem title={dataOrder[index]} groupTitle />
+              {data[dataOrder[index]].map((element, index) => {
+                return (
+                  <ListItem
+                    title={element.name}
+                    key={element.name + index}
+                    link={"/item/" + element.name.charAt(0) + "/" + index + "/"}
+                  />
+                );
+              })}
+            </ListGroup>
+          );
+        }
+      })}
+      )
+    </List>
+  );
+};
+
 export default ({ f7router, f7route }) => {
   const users = store.getters.users;
+  const usersList = users.value;
+  const userOrder = Object.keys(usersList);
 
   return (
     <Page>
@@ -29,10 +61,12 @@ export default ({ f7router, f7route }) => {
           <Link panelOpen="left">Quit</Link>
         </NavLeft>
         <NavTitle>Contacts</NavTitle>
+
         <NavRight>
           <Link panelOpen="right">+</Link>
         </NavRight>
       </Navbar>
+
       <Toolbar bottom>
         <Link>Favourites</Link>
         <Link>Recent</Link>
@@ -40,11 +74,14 @@ export default ({ f7router, f7route }) => {
         <Link>Dial</Link>
       </Toolbar>
 
-      <List>
-        <ListItem link="/item/4/" title={users.value[0].name} />
-      </List>
+      <ContactList data={usersList} />
 
-      {/* <List>
+      {/*
+      <List>
+        <ListItem link="/item/4/" title={"users.value[0].name"} />
+      </List>
+      
+      <List>
         <ListItem
           link="/load-something-that-doesnt-exist/"
           title="Default Route (404)"

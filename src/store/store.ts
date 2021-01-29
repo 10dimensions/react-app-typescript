@@ -1,0 +1,86 @@
+import { createStore } from "framework7";
+
+// create store
+const store = createStore({
+  // start with the state (store data)
+  state: {
+    current: { id: "A", num: 0 },
+    users: {
+      A: [
+        { name: "alpine", number: "954", email: "alpine@aol.com", fav: false },
+        { name: "apple", number: "111", email: "oinf@app.com", fav: true }
+      ],
+      B: [],
+      C: [
+        {
+          name: "ceddar",
+          number: "777",
+          email: "cythe@aol.com",
+          fav: false
+        }
+      ],
+      D: [],
+      E: [],
+      F: [],
+      G: [],
+      H: [],
+      I: [],
+      J: [],
+      K: [],
+      L: [],
+      M: [],
+      N: [],
+      O: [],
+      P: [],
+      Q: [],
+      R: [],
+      S: [],
+      T: [],
+      U: [],
+      V: [],
+      W: [],
+      X: [],
+      Y: [],
+      Z: []
+    }
+    // ...
+  },
+
+  // actions to operate with state and for async manipulations
+  actions: {
+    // context object containing store state will be passed as an argument
+    getUser({ state }) {
+      // fetch users from API
+      fetch("some-url")
+        .then((res) => res.json())
+        .then((users) => {
+          // assign new users to store state.users
+          state.users = users;
+        });
+    },
+    setCurrent({ state }, { obj }) {
+      const { id, num } = obj;
+
+      const _id: string = id.toUpperCase();
+      const _num: number = parseInt(num);
+
+      state.current = { id: _id, num: _num };
+    }
+  },
+
+  // getters to retrieve the state
+  getters: {
+    // context object containing store state will be passed as an argument
+    users({ state }) {
+      return state.users;
+    },
+    user({ state }) {
+      const id: string = state.current.id;
+      const num: number = state.current.num;
+      return state.users[id][num];
+    }
+  }
+});
+
+// export store
+export default store;

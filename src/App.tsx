@@ -15,7 +15,7 @@ const f7params = {
       component: PageHome
     },
     {
-      path: "/item/:id/",
+      path: "/item/:id/:num/",
       component: ContactItem
     },
     {
