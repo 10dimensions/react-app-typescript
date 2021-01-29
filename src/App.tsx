@@ -2,6 +2,7 @@ import React from "react";
 import { App, Panel, View, Page, Block } from "framework7-react";
 import PageHome from "./Home";
 import ContactItem from "./Item";
+import Add from "./Add";
 import PageNotFound from "./404";
 
 const f7params = {
@@ -15,8 +16,16 @@ const f7params = {
       component: PageHome
     },
     {
+      path: "/contacts/:fav",
+      component: PageHome
+    },
+    {
       path: "/item/:id/:num/",
       component: ContactItem
+    },
+    {
+      path: "/add/:edit",
+      component: Add
     },
     {
       path: "(.*)",

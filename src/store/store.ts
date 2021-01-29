@@ -12,12 +12,8 @@ const store = createStore({
       ],
       B: [],
       C: [
-        {
-          name: "ceddar",
-          number: "777",
-          email: "cythe@aol.com",
-          fav: false
-        }
+        { name: "ceddar", number: "777", email: "cythe@aol.com", fav: false },
+        { name: "cherry", number: "525", email: "cherry@gmail.com", fav: true }
       ],
       D: [],
       E: [],
