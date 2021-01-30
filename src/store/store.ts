@@ -61,6 +61,16 @@ const store = createStore({
       const _num: number = parseInt(num);
 
       state.current = { id: _id, num: _num };
+    },
+    setFavourite({ state }, { obj }) {
+      const { id, num, fav } = obj;
+      console.log(id, num, fav);
+
+      const _id: string = id.toUpperCase();
+      const _num: number = parseInt(num);
+
+      state.users[_id][_num]["fav"] = fav;
+      console.log(state.users);
     }
   },
 
@@ -69,6 +79,9 @@ const store = createStore({
     // context object containing store state will be passed as an argument
     users({ state }) {
       return state.users;
+    },
+    favusers({ state }) {
+      return;
     },
     user({ state }) {
       const id: string = state.current.id;
