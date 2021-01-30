@@ -1,6 +1,14 @@
 import React from "react";
 import store from "./store/store";
-import { Page, Navbar, BlockTitle, Block, Link } from "framework7-react";
+import {
+  Page,
+  Navbar,
+  NavRight,
+  BlockTitle,
+  Block,
+  Link
+} from "framework7-react";
+import Profile from "./components/profile/Profile";
 
 interface ID {
   id: string;
@@ -16,18 +24,16 @@ const ContactItem = (props) => {
 
   store.dispatch("setCurrent", { obj: { id: id, num: num } });
   const user = store.getters.user;
-  const { name, number, email, fav } = user.value;
 
   return (
     <Page>
-      <Navbar title="" backLink="Back" />
-      <BlockTitle>{name}</BlockTitle>
-      <Block strong>
-        <p>Here is About page!</p>
-        <p>
-          You can go <Link back>back</Link>.
-        </p>
-      </Block>
+      <Navbar title="" backLink="Back">
+        <NavRight>
+          <Link href="/add/true">Edit</Link>
+        </NavRight>
+      </Navbar>
+
+      <Profile details={user.value} id={id} num={num} />
     </Page>
   );
 };

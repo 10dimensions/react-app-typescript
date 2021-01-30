@@ -20,7 +20,7 @@ import {
   View
 } from "framework7-react";
 
-import ContactList from "./components/contactList/contactList";
+import ContactList from "./components/contactList/ContactList";
 
 export default ({ f7router, f7route }) => {
   const users = store.getters.users;
