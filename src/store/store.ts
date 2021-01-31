@@ -54,8 +54,9 @@ const store = createStore({
           state.users = users;
         });
     },
+
     addUser({ state }, { obj }) {
-      const { id, name, number, email } = obj;
+      const { id, name, number, email, fav } = obj;
 
       const _id: string = id.toUpperCase();
 
@@ -63,9 +64,30 @@ const store = createStore({
         name: name,
         number: number,
         email: email,
-        fav: false
+        fav: fav
       });
     },
+
+    modifyUser({ state }, { obj }) {
+      const { id, num, name, number, email, fav } = obj;
+
+      const _id: string = id.toUpperCase();
+      const _num: number = parseInt(num);
+
+      state.users[_id][_num] = {
+        name: name,
+        number: number,
+        email: email,
+        fav: fav
+      };
+    },
+
+    deleteUser({ state }, { obj }) {
+      const { id, num } = obj;
+
+      //state.users[_id].
+    },
+
     setCurrent({ state }, { obj }) {
       const { id, num } = obj;
 
@@ -74,6 +96,7 @@ const store = createStore({
 
       state.current = { id: _id, num: _num };
     },
+
     setFavourite({ state }, { obj }) {
       const { id, num, fav } = obj;
 
@@ -97,6 +120,9 @@ const store = createStore({
       const id: string = state.current.id;
       const num: number = state.current.num;
       return state.users[id][num];
+    },
+    current({ state }) {
+      return state.current;
     }
   }
 });
