@@ -4,8 +4,11 @@ import store from "../../store/store";
 import { BlockTitle, Block, Icon, Button } from "framework7-react";
 
 const setFavourite = (id, num, fav) => {
-  console.log(id, num, fav);
   store.dispatch("setFavourite", { obj: { id: id, num: num, fav: fav } });
+};
+
+const deleteUser = (id, num) => {
+  store.dispatch("deleteUser", { obj: { id: id, num: num } });
 };
 
 const Profile = (props) => {
@@ -46,7 +49,12 @@ const Profile = (props) => {
         </div>
       </Block>
 
-      <button className="button button-raised btndelete">Delete Contact</button>
+      <button
+        className="button button-raised btndelete"
+        onClick={() => deleteUser(id, num)}
+      >
+        Delete Contact
+      </button>
     </div>
   );
 };

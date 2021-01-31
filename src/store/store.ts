@@ -93,7 +93,10 @@ const store = createStore({
     deleteUser({ state }, { obj }) {
       const { id, num } = obj;
 
-      //state.users[_id].
+      const _id: string = id.toUpperCase();
+      const _num: number = parseInt(num);
+
+      state.users[_id].splice(_num, 1);
       localStorage.setItem("contacts", JSON.stringify(state.users));
     },
 
