@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import store from "../../store/store";
-import { BlockTitle, Block, Icon } from "framework7-react";
+import { BlockTitle, Block, Icon, Button } from "framework7-react";
 
 const setFavourite = (id, num, fav) => {
   console.log(id, num, fav);
@@ -45,6 +45,8 @@ const Profile = (props) => {
           <p>{email}</p>
         </div>
       </Block>
+
+      <button className="button button-raised btndelete">Delete Contact</button>
     </div>
   );
 };

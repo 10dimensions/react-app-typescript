@@ -23,9 +23,8 @@ import {
 import ContactList from "./components/contactList/ContactList";
 
 export default ({ f7router, f7route }) => {
-  const users = store.getters.users;
-  const usersList = users.value;
-  const userOrder = Object.keys(usersList);
+  let users = store.getters.users;
+  let usersList = users.value;
 
   const [fav, setFav] = useState<boolean>(false);
 

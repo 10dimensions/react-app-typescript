@@ -54,6 +54,18 @@ const store = createStore({
           state.users = users;
         });
     },
+    addUser({ state }, { obj }) {
+      const { id, name, number, email } = obj;
+
+      const _id: string = id.toUpperCase();
+
+      state.users[_id].push({
+        name: name,
+        number: number,
+        email: email,
+        fav: false
+      });
+    },
     setCurrent({ state }, { obj }) {
       const { id, num } = obj;
 
@@ -64,13 +76,11 @@ const store = createStore({
     },
     setFavourite({ state }, { obj }) {
       const { id, num, fav } = obj;
-      console.log(id, num, fav);
 
       const _id: string = id.toUpperCase();
       const _num: number = parseInt(num);
 
       state.users[_id][_num]["fav"] = fav;
-      console.log(state.users);
     }
   },
 

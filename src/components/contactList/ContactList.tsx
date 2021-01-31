@@ -29,7 +29,6 @@ const ContactList = (props) => {
           );
         }
       })}
-      )
     </List>
   );
 };
