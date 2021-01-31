@@ -1,4 +1,5 @@
 import { createStore } from "framework7";
+var localStorage = require("localStorage");
 
 // create store
 const store = createStore({
@@ -54,6 +55,9 @@ const store = createStore({
           state.users = users;
         });
     },
+    loadUsers({ state }, { users }) {
+      state.users = JSON.parse(users);
+    },
 
     addUser({ state }, { obj }) {
       const { id, name, number, email, fav } = obj;
@@ -66,6 +70,9 @@ const store = createStore({
         email: email,
         fav: fav
       });
+
+      localStorage.setItem("contacts", JSON.stringify(state.users));
+      console.log(localStorage.getItem("contacts"));
     },
 
     modifyUser({ state }, { obj }) {
@@ -80,12 +87,14 @@ const store = createStore({
         email: email,
         fav: fav
       };
+      localStorage.setItem("contacts", JSON.stringify(state.users));
     },
 
     deleteUser({ state }, { obj }) {
       const { id, num } = obj;
 
       //state.users[_id].
+      localStorage.setItem("contacts", JSON.stringify(state.users));
     },
 
     setCurrent({ state }, { obj }) {
@@ -104,6 +113,7 @@ const store = createStore({
       const _num: number = parseInt(num);
 
       state.users[_id][_num]["fav"] = fav;
+      localStorage.setItem("contacts", JSON.stringify(state.users));
     }
   },
 

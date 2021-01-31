@@ -4,6 +4,9 @@ import PageHome from "./Home";
 import ContactItem from "./Item";
 import Add from "./Add";
 import PageNotFound from "./404";
+import store from "./store/store";
+
+var localStorage = require("localStorage");
 
 const f7params = {
   id: "com.app2020.contactlist", // App bundle ID
@@ -35,6 +38,14 @@ const f7params = {
 };
 
 export default () => {
+  if (localStorage.getItem("contacts")) {
+    let users = localStorage.getItem("contacts");
+    store.dispatch("loadUsers", { users: users });
+  } else {
+    let users = store.getters.users;
+    localStorage.setItem("contacts", JSON.stringify(users));
+  }
+
   return (
     <App {...f7params}>
       <View main url="/" />
